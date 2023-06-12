@@ -38,7 +38,7 @@ function App() {
                 <MainNav isLogin={true}/>
                 <Routes>
                     <Route exact path={'/'} element={<Welcome featuresData={featuresData}/>}/>
-                    <Route exact path={'/login'} element={<SignIn/>}/>
+                    <Route exact path={'/login'} element={<SignIn />}/>
                     <Route exact path={'/profile'} element={<Account/>}/>
                     {/*TODO: Profile*/}
                 </Routes>
