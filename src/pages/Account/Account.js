@@ -1,12 +1,31 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import "./Account.css"
+import {useSelector} from "react-redux";
+import {selectToken} from "../../features/authSlice";
+import userService from "../../services/userService";
 
-function Account({ title, amount, description }) {
+function Account() {
+    const [userData, setUserData] = useState(null)
+    const token = useSelector(selectToken)
+    const userLoader = new userService()
+
+    const fetchUserData = async () => setUserData(await userLoader.getUserData(token))
+    const editHandler = () => {
+       const name = prompt('write name','')
+       const lastname = prompt('write lastname','')
+        console.log(name,lastname)
+    }
+    useEffect(() => {
+        fetchUserData()
+    }, []);
+    if (!userData) {
+        return <h1>Loading...</h1>
+    }
     return (
         <main className="main bg-dark">
             <div className="header">
-                <h1>Welcome back<br/>Tony Jarvis!</h1>
-                <button className="edit-button">Edit Name</button>
+                <h1>Welcome back<br/>{userData.firstName} {userData.lastName}!</h1>
+                <button className="edit-button" onClick={()=>editHandler()}>Edit Name</button>
             </div>
             <h2 className="sr-only">Accounts</h2>
             <section className="account">
