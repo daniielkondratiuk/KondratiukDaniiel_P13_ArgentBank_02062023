@@ -18,7 +18,7 @@ export default class AuthService {
             const response = await axios.post(`${this.baseUrl}/user/signup`, data)
             return response.data
         } catch (error) {
-            throw new Error(error.response.data.message)
+            return error.response.data
         }
     }
 }

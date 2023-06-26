@@ -14,7 +14,7 @@ export default class userService {
             })
             return response.data.body
         } catch (error) {
-            throw new Error(error.response.data.message)
+            return error.response.data
         }
     }
     async editUserData(body) {
@@ -26,7 +26,7 @@ export default class userService {
             })
             return response.data
         } catch (error) {
-            throw new Error(error.response.data.message)
+            return error.response.data
         }
     }
 }

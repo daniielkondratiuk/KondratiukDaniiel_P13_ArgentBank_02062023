@@ -70,7 +70,7 @@ paths:
           name: Authorization
           description: Joindre le jeton JWT Bearer
           required: true
-          type: 'string'
+          type: string
       produces:
         - application/json
       responses:
@@ -94,7 +94,7 @@ paths:
           name: Authorization
           description: Joindre le jeton JWT Bearer
           required: true
-          type: 'string'
+          type: string
         - in: body
           name: body
           description: Mettre à jour les attributs du profil utilisateur
@@ -125,7 +125,7 @@ paths:
           name: Authorization
           description: Joindre le jeton JWT Bearer
           required: true
-          type: 'string'
+          type: string
       produces:
         - application/json
       responses:
@@ -150,10 +150,10 @@ paths:
           name: Authorization
           description: Joindre le jeton JWT Bearer
           required: true
-          type: 'string'
+          type: string
         - in: path
           name: id
-          type: integer
+          type: string
           required: true
           description: 'ID de la transaction à obtenir'
       produces:
@@ -179,10 +179,10 @@ paths:
           name: Authorization
           description: Joindre le jeton JWT Bearer
           required: true
-          type: 'string'
+          type: string
         - in: path
           name: id
-          type: integer
+          type: string
           required: true
           description: 'ID de la transaction à obtenir'
         - in: body
@@ -214,10 +214,10 @@ paths:
           name: Authorization
           description: Joindre le jeton JWT Bearer
           required: true
-          type: 'string'
+          type: string
         - in: path
           name: id
-          type: integer
+          type: string
           required: true
           description: 'ID de la transaction à obtenir'
       produces:
@@ -284,32 +284,32 @@ definitions:
       lastName:
         type: string
   Transaction:
-    type: 'object'
+    type: object
     properties:
       id:
-        type: 'string'
+        type: string
       transactionData:
-        type: 'object'
+        type: object
         properties:
           date:
-            type: 'string'
+            type: string
           description:
-            type: 'string'
+            type: string
           amount:
-            type: 'number'
+            type: number
           detail:
-            type: 'object'
+            type: object
             properties:
               typeoftransaction:
-                type: 'string'
+                type: string
               category:
-                type: 'string'
+                type: string
               notes:
-                type: 'string'
+                type: string
   TransactionUpdate:
-    type: 'object'
+    type: object
     properties:
       category:
-        type: 'string'
+        type: string
       notes:
-        type: 'string'
+        type: string
