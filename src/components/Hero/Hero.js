@@ -1,11 +1,11 @@
-import React from 'react';
-import './Hero.css';
-import BackgroundImg from '../../img/bank-tree.jpeg';
+import React from 'react'
+import './Hero.css'
+import BackgroundImg from '../../img/bank-tree.jpeg'
 
 function Hero() {
     const backgroundImageStyle = {
         backgroundImage: `url(${BackgroundImg})`
-    };
+    }
 
     return (
         <div className="hero" style={backgroundImageStyle}>
@@ -16,7 +16,7 @@ function Hero() {
                 <p className="text">Open a savings account with Argent Bank today!</p>
             </div>
         </div>
-    );
+    )
 }
 
-export default Hero;
+export default Hero

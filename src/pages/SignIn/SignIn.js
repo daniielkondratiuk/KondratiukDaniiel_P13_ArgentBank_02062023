@@ -6,6 +6,7 @@ import {useDispatch} from "react-redux"
 import {login} from "../../features/authSlice"
 
 const auth = new AuthService()
+
 function SignIn() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -14,13 +15,18 @@ function SignIn() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const data = await auth.login({email, password})
-        dispatch(login({
-            token: data.body.token
-        }))
-        if (data.body.token) {
-            navigate("/profile")
+        if (data.status === 200) {
+            dispatch(login({
+                token: data.body.token
+            }))
+            if (data.body.token) {
+                navigate("/profile")
+            }
+        } else {
+            errorHandler(data.message)
         }
     }
+    const errorHandler = (message) => alert(message)
 
     return (
         <div className="main bg-dark">

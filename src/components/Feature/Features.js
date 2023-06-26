@@ -1,5 +1,5 @@
-import React from 'react';
-import Feature from "./Feature";
+import React from 'react'
+import Feature from "./Feature"
 import './Features.css'
 
 const Features = ({featuresData}) => {
@@ -13,4 +13,4 @@ const Features = ({featuresData}) => {
     );
 };
 
-export default Features;
+export default Features

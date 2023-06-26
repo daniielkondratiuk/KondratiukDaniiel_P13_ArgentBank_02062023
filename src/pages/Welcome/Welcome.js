@@ -1,9 +1,9 @@
-import React from 'react';
-import Hero from "../../components/Hero/Hero";
-import Features from "../../components/Feature/Features";
-import Icon1 from "../../img/icon-chat.png";
-import Icon2 from "../../img/icon-money.png";
-import Icon3 from "../../img/icon-security.png";
+import React from 'react'
+import Hero from "../../components/Hero/Hero"
+import Features from "../../components/Feature/Features"
+import Icon1 from "../../img/icon-chat.png"
+import Icon2 from "../../img/icon-money.png"
+import Icon3 from "../../img/icon-security.png"
 
 const Welcome = () => {
     const featuresData = [
@@ -33,7 +33,7 @@ const Welcome = () => {
                 <Features featuresData={featuresData}/>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default Welcome;
+export default Welcome

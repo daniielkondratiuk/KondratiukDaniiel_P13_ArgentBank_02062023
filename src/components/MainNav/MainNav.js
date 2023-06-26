@@ -2,12 +2,12 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import Logo from '../../img/argentBankLogo.png'
 import './MainNav.css'
-import {useDispatch} from "react-redux";
+import {useDispatch} from "react-redux"
 import {logout} from "../../features/authSlice"
 
-function MainNav({ isLogin, userName = 'Tony' }) {
+function MainNav({ isLogin, userName }) {
     const dispatch = useDispatch()
-    const handleLogout = async (e) => {
+    const handleLogout = async () => {
         dispatch(logout())
     }
     return (

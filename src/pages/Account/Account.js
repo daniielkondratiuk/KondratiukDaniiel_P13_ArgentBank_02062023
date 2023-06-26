@@ -1,23 +1,41 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react'
 import "./Account.css"
-import {useSelector} from "react-redux";
-import {selectToken} from "../../features/authSlice";
-import userService from "../../services/userService";
+import {useDispatch, useSelector} from "react-redux"
+import {selectToken} from "../../features/authSlice"
+import userService from "../../services/userService"
+import {getDataProfile, updateDataProfile} from "../../features/userSlice"
 
-function Account() {
-    const [userData, setUserData] = useState(null)
+function Account({userData, fetchUserData}) {
+    const [isEditing, setIsEditing] = useState(false)
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const dispatch = useDispatch()
+
     const token = useSelector(selectToken)
-    const userLoader = new userService()
-
-    const fetchUserData = async () => setUserData(await userLoader.getUserData(token))
-    const editHandler = () => {
-       const name = prompt('write name','')
-       const lastname = prompt('write lastname','')
-        console.log(name,lastname)
+    const userLoader = new userService(token)
+    useEffect(()=>{
+        if (userData){
+            dispatch(getDataProfile(userData))
+        }
+    },[userData])
+    const editHandler = async () => {
+        if (firstName && lastName) {
+            const response = await userLoader.editUserData({firstName, lastName})
+            if (response.status === 200) {
+                editCansel()
+                dispatch(updateDataProfile(response.body))
+                fetchUserData()
+            }
+        } else {
+            alert('Please enter fields')
+        }
     }
-    useEffect(() => {
-        fetchUserData()
-    }, []);
+    const editCansel = () => {
+        setFirstName('')
+        setLastName('')
+        setIsEditing(false)
+    }
+
     if (!userData) {
         return <h1>Loading...</h1>
     }
@@ -25,7 +43,32 @@ function Account() {
         <main className="main bg-dark">
             <div className="header">
                 <h1>Welcome back<br/>{userData.firstName} {userData.lastName}!</h1>
-                <button className="edit-button" onClick={()=>editHandler()}>Edit Name</button>
+                <button className="edit-button" onClick={() => setIsEditing(!isEditing)}>Edit Name</button>
+                {isEditing ?
+                    <div className="edit-section">
+                    <span className="edit-input">
+                        <label htmlFor="firstname">First Name</label>
+                        <input id="firstname"
+                               value={firstName}
+                               onChange={(e) => setFirstName(e.target.value)}
+                               type="text"/>
+                    </span>
+                        <span className="edit-input">
+                        <label htmlFor="firstname">Last Name</label>
+                        <input id="lastname"
+                               value={lastName}
+                               onChange={(e) => setLastName(e.target.value)}
+                               type="text"/>
+                    </span>
+                        <div className="edit-buttons">
+                            <button className="edit-button" disabled={!firstName || !lastName}
+                                    onClick={editHandler}>Save
+                            </button>
+                            <button className="edit-button-cansel" onClick={editCansel}>Cansel</button>
+                        </div>
+                    </div>
+                    : ""
+                }
             </div>
             <h2 className="sr-only">Accounts</h2>
             <section className="account">
@@ -60,7 +103,7 @@ function Account() {
             </section>
         </main>
 
-    );
+    )
 }
 
-export default Account;
+export default Account
