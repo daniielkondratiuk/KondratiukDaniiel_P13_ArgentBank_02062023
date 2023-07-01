@@ -22,7 +22,7 @@ function Account({userData, fetchUserData}) {
         if (firstName && lastName) {
             const response = await userLoader.editUserData({firstName, lastName})
             if (response.status === 200) {
-                editCansel()
+                editCancel()
                 dispatch(updateDataProfile(response.body))
                 fetchUserData()
             }
@@ -30,7 +30,7 @@ function Account({userData, fetchUserData}) {
             alert('Please enter fields')
         }
     }
-    const editCansel = () => {
+    const editCancel = () => {
         setFirstName('')
         setLastName('')
         setIsEditing(false)
@@ -64,7 +64,7 @@ function Account({userData, fetchUserData}) {
                             <button className="edit-button" disabled={!firstName || !lastName}
                                     onClick={editHandler}>Save
                             </button>
-                            <button className="edit-button-cansel" onClick={editCansel}>Cansel</button>
+                            <button className="edit-button-cancel" onClick={editCancel}>Cancel</button>
                         </div>
                     </div>
                     : ""
