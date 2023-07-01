@@ -14,17 +14,22 @@ function SignIn() {
     const navigate = useNavigate()
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const data = await auth.login({email, password})
-        if (data.status === 200) {
-            dispatch(login({
-                token: data.body.token
-            }))
-            if (data.body.token) {
-                navigate("/profile")
+        if (email && password) {
+            const data = await auth.login({email, password})
+            if (data.status === 200) {
+                dispatch(login({
+                    token: data.body.token
+                }))
+                if (data.body.token) {
+                    navigate("/profile")
+                }
+            } else {
+                errorHandler(data.message)
             }
-        } else {
-            errorHandler(data.message)
+        }else {
+            alert('Merci de remplir tous les champs')
         }
+
     }
     const errorHandler = (message) => alert(message)
 

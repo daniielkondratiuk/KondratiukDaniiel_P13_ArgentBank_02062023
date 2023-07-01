@@ -42,6 +42,10 @@
     font-weight: bold;
     padding: 10px;
 }
+.edit-button:disabled {
+    border-color: #5b5b5b;
+    background-color: #5b5b5b;
+}
 .edit-button-cancel {
     border-color: #C21F2DFF;
     background-color: #C21F2DFF;

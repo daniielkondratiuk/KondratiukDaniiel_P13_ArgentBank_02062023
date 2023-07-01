@@ -19,6 +19,7 @@ function Account({userData, fetchUserData}) {
         }
     },[userData])
     const editHandler = async () => {
+
         if (firstName && lastName) {
             const response = await userLoader.editUserData({firstName, lastName})
             if (response.status === 200) {
@@ -27,7 +28,7 @@ function Account({userData, fetchUserData}) {
                 fetchUserData()
             }
         } else {
-            alert('Please enter fields')
+            alert('Merci de remplir tous les champs')
         }
     }
     const editCancel = () => {
@@ -61,7 +62,7 @@ function Account({userData, fetchUserData}) {
                                type="text"/>
                     </span>
                         <div className="edit-buttons">
-                            <button className="edit-button" disabled={!firstName || !lastName}
+                            <button className="edit-button"
                                     onClick={editHandler}>Save
                             </button>
                             <button className="edit-button-cancel" onClick={editCancel}>Cancel</button>
