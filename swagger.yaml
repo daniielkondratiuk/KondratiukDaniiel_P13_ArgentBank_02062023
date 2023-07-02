@@ -31,6 +31,8 @@ paths:
             $ref: '#/definitions/LoginResponse'
         '400':
           description: Champs invalides
+        '404':
+          description: Page non trouvée
         '500':
           description: Erreur interne du serveur
   /user/signup:
@@ -80,6 +82,8 @@ paths:
             $ref: '#/definitions/ApiResponse'
         '400':
           description: Champs invalides
+        '404':
+          description: Page non trouvée
         '500':
           description: Erreur interne du serveur
     put:
@@ -110,6 +114,8 @@ paths:
             $ref: '#/definitions/ApiResponse'
         '400':
           description: Champs invalides
+        '404':
+          description: Page non trouvée
         '500':
           description: Erreur interne du serveur
   /user/profile/transaction:
@@ -135,6 +141,8 @@ paths:
             $ref: '#/definitions/Transaction'
         '400':
           description: Champs invalides
+        '404':
+          description: Page non trouvée
         '500':
           description: Erreur interne du serveur
   /user/profile/transaction/{id}:
@@ -165,6 +173,8 @@ paths:
             $ref: '#/definitions/Transaction'
         '400':
           description: Champs invalides
+        '404':
+          description: Page non trouvée
         '500':
           description: Erreur interne du serveur
     put:
@@ -200,6 +210,8 @@ paths:
             $ref: '#/definitions/TransactionUpdate'
         '400':
           description: Champs invalides
+        '404':
+          description: Page non trouvée
         '500':
           description: Erreur interne du serveur
     delete:
@@ -227,6 +239,8 @@ paths:
           description: Transaction utilisateur supprimée avec succès
         '400':
           description: Champs invalides
+        '404':
+          description: Page non trouvée
         '500':
           description: Erreur interne du serveur
 securityDefinitions:
